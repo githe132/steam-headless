@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  steam-headless:
+    image: steam-headless:latest
+    environment:
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+      - PUID=1000
+      - PGID=1000
+    devices:
+      - /dev/dri:/dev/dri
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    ports:
+      - 8080:8080
+      - 5900:5900
